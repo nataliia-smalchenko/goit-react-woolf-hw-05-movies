@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Header from './Header/Header';
 import Loader from './Loader/Loader';
@@ -56,6 +56,16 @@ const App = () => {
             }
           />
         </Route>
+        <Route
+          path="*"
+          element={
+            <section className="container">
+              <Link className="go-to-home" to="/">
+                Go to home page
+              </Link>
+            </section>
+          }
+        />
       </Routes>
     </>
   );

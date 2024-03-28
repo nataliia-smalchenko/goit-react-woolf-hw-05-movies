@@ -48,3 +48,10 @@ li {
   padding-left: 32px;
   padding-right: 32px;
 }
+
+.go-to-home {
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  margin-top: 32px;
+}
