@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import css from './SearchMovieForm.module.css';
 
 const SearchMovieForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,20 +16,20 @@ const SearchMovieForm = () => {
   };
 
   return (
-    <header>
-      <form onSubmit={handleSubmit}>
-        <input
-          className=""
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-          onChange={handleChange}
-          value={query}
-        />
-        <button type="submit">Search</button>
-      </form>
-    </header>
+    <form onSubmit={handleSubmit} className={css.form}>
+      <input
+        className={css.input}
+        type="text"
+        autoComplete="off"
+        autoFocus
+        placeholder="Search images and photos"
+        onChange={handleChange}
+        value={query}
+      />
+      <button className={css.button} type="submit">
+        Search
+      </button>
+    </form>
   );
 };
 

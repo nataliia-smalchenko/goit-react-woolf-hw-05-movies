@@ -4,6 +4,8 @@ import Loader from 'components/Loader/Loader';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Error from 'components/Error/Error';
 
+import css from './HomePage.module.css';
+
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,8 +30,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <section>
-      <h1>Trending today</h1>
+    <section className={`container ${css.section}`}>
+      <h1 className={css.title}>Trending today</h1>
       {loading && <Loader />}
       {movies.length > 0 && <MoviesList movies={movies} />}
       {error !== null && <Error message={error.message} />}

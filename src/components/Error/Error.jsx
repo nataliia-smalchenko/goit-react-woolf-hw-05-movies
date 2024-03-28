@@ -1,9 +1,11 @@
+import css from './Error.module.css';
+
 const Error = ({ message }) => {
   return (
-    <section>
-      <h2>Oops... Something went wrong. Please try again. </h2>
+    <div className={`container ${css.error}`}>
+      <p>Oops... Something went wrong. Please try again. </p>
       <p>Error message: {message}</p>
-    </section>
+    </div>
   );
 };
 

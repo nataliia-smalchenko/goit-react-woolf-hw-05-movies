@@ -1,15 +1,17 @@
+import css from './Cast.module.css';
+
 const Cast = ({ cast }) => {
   const defaultImg =
     'https://glavcom.ua/img/article/9139/95_main-v1678685008.jpg';
 
   return (
-    <section>
+    <section className={css.section}>
       {cast.length > 0 ? (
-        <ul>
+        <ul className={css.list}>
           {cast.map(actor => {
             const { id, name, profile_path, character } = actor;
             return (
-              <li key={id}>
+              <li key={id} className={css.card}>
                 <img
                   src={
                     profile_path

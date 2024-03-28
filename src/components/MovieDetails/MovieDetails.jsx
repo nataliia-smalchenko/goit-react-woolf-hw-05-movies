@@ -1,6 +1,5 @@
-import { Link, Outlet } from 'react-router-dom';
-
-import { useLocation } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = ({ details }) => {
   const defaultImg =
@@ -11,42 +10,58 @@ const MovieDetails = ({ details }) => {
   const backLink = location.state?.from ?? '/';
 
   return (
-    <section>
-      <Link to={backLink}>&#60;- Go back</Link>
-      <img
-        src={
-          poster_path
-            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-            : defaultImg
-        }
-        width={300}
-        alt={title}
-      />
-      <h1>
-        {title} ({release_date.slice(0, 4)})
-      </h1>
-      <p>User score: {vote_average * 10}%</p>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <h3>Genres</h3>
-      <ul>
-        {genres.map(genre => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
-      <h4>Additional information</h4>
-      <ul>
+    <section class={`container ${css.section}`}>
+      <Link className={css['back-link']} to={backLink}>
+        &#60;- Go back
+      </Link>
+      <div class={css['movie-details']}>
+        <img
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              : defaultImg
+          }
+          width={300}
+          alt={title}
+        />
+        <div className={css.details}>
+          <h1 className={css.title}>
+            {title} ({release_date.slice(0, 4)})
+          </h1>
+          <p>User score: {vote_average * 10}%</p>
+          <h2 className={css['overview-title']}>Overview</h2>
+          <p>{overview}</p>
+          <h3 className={css['genres-title']}>Genres</h3>
+          <ul className={css['genres-list']}>
+            {genres.map(genre => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <h3 className={css['add-info']}>Additional information</h3>
+      <ul className={css['add-list']}>
         <li>
-          <Link to="cast" state={{ from: backLink }}>
+          <NavLink
+            className={css['add-link']}
+            to="cast"
+            state={{ from: backLink }}
+          >
             Cast
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="reviews" state={{ from: backLink }}>
+          <NavLink
+            className={css['add-link']}
+            to="reviews"
+            state={{ from: backLink }}
+          >
             Reviews
-          </Link>
+          </NavLink>
         </li>
       </ul>
+      <hr />
       <Outlet />
     </section>
   );

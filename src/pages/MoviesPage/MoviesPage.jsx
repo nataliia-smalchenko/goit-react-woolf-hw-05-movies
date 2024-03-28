@@ -6,6 +6,8 @@ import SearchMovieForm from 'components/SearchMovieForm/SearchMovieForm';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import css from './MoviesPage.module.css';
+
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,15 +54,23 @@ const MoviesPage = () => {
   };
 
   return (
-    <section>
+    <section className="container">
       <SearchMovieForm />
       {loading && <Loader />}
       {movies.length > 0 && <MoviesList movies={movies} />}
       {error !== null && <Error message={error.message} />}
-      {searchParams.get('page') > 1 && (
-        <button onClick={handlePreviousClick}>&#60;</button>
-      )}
-      {!isLastPage && <button onClick={handleNextClick}>&#62;</button>}
+      <div className={css.nav}>
+        {searchParams.get('page') > 1 && (
+          <button className={css.button} onClick={handlePreviousClick}>
+            &#60;
+          </button>
+        )}
+        {!isLastPage && (
+          <button className={css.button} onClick={handleNextClick}>
+            &#62;
+          </button>
+        )}
+      </div>
     </section>
   );
 };

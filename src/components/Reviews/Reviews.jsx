@@ -1,13 +1,15 @@
+import css from './Reviews.module.css';
+
 const Reviews = ({ reviews }) => {
   return (
-    <section>
+    <section className={css.section}>
       {reviews.length > 0 ? (
-        <ul>
+        <ul className={css.list}>
           {reviews.map(review => {
             return (
               <li key={review.id}>
-                <h4>Author: {review.author}</h4>
-                <p>{review.content}</p>
+                <h4>{review.author}</h4>
+                <p className={css.text}>{review.content}</p>
               </li>
             );
           })}
